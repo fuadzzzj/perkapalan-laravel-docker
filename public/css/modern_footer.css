@@ -1,0 +1,163 @@
+.foot,.foot * {
+    box-sizing: border-box
+}
+
+.foot {
+    --f-bg: #10231d;
+    --f-ink: #eef4f0;
+    --f-accent: #f0b43c;
+    --f-ease: cubic-bezier(.2,.8,.2,1);
+    --f-soft: color-mix(in srgb,var(--f-ink) 62%,transparent);
+    --f-line: color-mix(in srgb,var(--f-ink) 14%,transparent);
+    width: 100%;
+    margin: 0;
+    background: var(--f-bg);
+    color: var(--f-ink);
+    overflow: hidden;
+    font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing:antialiased;
+}
+
+@media (prefers-color-scheme:dark) {
+    .foot {
+        --f-bg: #070d0b;
+        border: 1px solid var(--f-line)
+    }
+}
+
+.foot a {
+    color: inherit;
+    text-decoration: none
+}
+
+.foot a:focus-visible {
+    outline: 2px solid var(--f-accent);
+    outline-offset: 3px;
+    border-radius: 6px
+}
+
+.foot-in {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 48px 28px 24px
+}
+
+.foot-top {
+    display: grid;
+    gap: 36px
+}
+
+.foot-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 650;
+    font-size: 1.15rem;
+    letter-spacing: -.02em
+}
+
+.foot-logo i {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--f-accent);
+    box-shadow: 0 0 0 4px color-mix(in srgb,var(--f-accent) 28%,transparent);
+    transition: transform .5s var(--f-ease)
+}
+
+.foot-logo:hover i {
+    transform: scale(1.35)
+}
+
+.foot-brand p {
+    margin: 14px 0 0;
+    max-width: 34ch;
+    font-size: .98rem;
+    color: var(--f-soft)
+}
+
+.foot h3 {
+    margin: 0 0 14px;
+    font-size: .95rem;
+    font-weight: 600;
+    color: var(--f-accent)
+}
+
+.foot ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px
+}
+
+.foot ul a {
+    padding-bottom: 2px;
+    background: linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;
+    transition: background-size .4s var(--f-ease)
+}
+
+.foot ul a:hover,.foot ul a:focus-visible {
+    background-size: 100% 1px
+}
+
+.foot-big {
+    margin: 36px 0 -.1em;
+    font-size: clamp(3.5rem,20vw,12rem);
+    font-weight: 700;
+    letter-spacing: -.06em;
+    line-height: .8;
+    color: color-mix(in srgb,var(--f-ink) 9%,transparent);
+    user-select: none;
+    pointer-events: none;
+    white-space: nowrap
+}
+
+.foot-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    border-top: 1px solid var(--f-line);
+    font-size: .9rem;
+    color: var(--f-soft)
+}
+
+.foot-totop {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: var(--f-accent);
+    color: #2a1d00!important;
+    font-weight: 600;
+    transition: transform .35s var(--f-ease),box-shadow .35s
+}
+
+.foot-totop:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px -10px var(--f-accent)
+}
+
+@media (min-width:820px) {
+    .foot {
+        max-width: none;
+        margin: 0;
+    }
+    .foot-in {
+        padding: 64px 48px 28px
+    }
+    .foot-top {
+        grid-template-columns: 1.5fr 1fr 1fr;
+        gap: 48px
+    }
+}
+
+@media (prefers-reduced-motion:reduce) {
+    .foot * {
+        transition-duration: .01ms!important
+    }
+}

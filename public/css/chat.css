@@ -1,0 +1,149 @@
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    background: #e9f0f4;
+    color: #132b43;
+    font-family: 'DM Sans',Arial,sans-serif
+}
+
+.chat-shell {
+    max-width: 900px;
+    height: 100vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    box-shadow: 0 0 35px #b7c6d0
+}
+
+.chat-shell>header {
+    background: #092441;
+    color: #fff;
+    padding: 25px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+
+.chat-shell h1 {
+    font: 700 27px Georgia,serif;
+    margin: 4px 0
+}
+
+.chat-shell header p {
+    margin: 0;
+    color: #b4c9d8;
+    font-size: 13px
+}
+
+.eyebrow {
+    color: #e2ad45;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 10px
+}
+
+.chat-shell header a {
+    background: #e2ad45;
+    color: #092441;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px 13px;
+    border-radius: 6px
+}
+
+.messages {
+    flex: 1;
+    overflow: auto;
+    padding: 24px 30px;
+    background: linear-gradient(135deg,#f6f9fb,#eaf2f5)
+}
+
+.message {
+    max-width: 70%;
+    margin-bottom: 15px;
+    background: #fff;
+    border: 1px solid #dbe6ec;
+    border-radius: 8px;
+    padding: 11px 14px;
+    box-shadow: 0 2px 8px #bdccd433
+}
+
+.message.mine {
+    margin-left: auto;
+    background: #d9eef5;
+    border-color: #acd8e6
+}
+
+.message-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 7px
+}
+
+.message-meta b {
+    font-size: 12px
+}
+
+.message-meta span {
+    font-size: 10px;
+    color: #7890a1
+}
+
+.message p {
+    font-size: 14px;
+    line-height: 1.45;
+    margin: 6px 0 0;
+    white-space: normal
+}
+
+.composer {
+    display: flex;
+    gap: 10px;
+    padding: 16px 24px;
+    border-top: 1px solid #dbe6ec;
+    background: #fff
+}
+
+.composer input {
+    flex: 1;
+    border: 1px solid #cbd9e2;
+    border-radius: 6px;
+    padding: 12px;
+    font: inherit
+}
+
+.composer button {
+    border: 0;
+    border-radius: 6px;
+    padding: 0 20px;
+    background: #116b91;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer
+}
+
+@media(max-width:600px) {
+    .chat-shell>header {
+        padding: 20px
+    }
+    .chat-shell h1 {
+        font-size: 22px
+    }
+    .messages {
+        padding: 18px
+    }
+    .message {
+        max-width: 88%
+    }
+    .composer {
+        padding: 12px
+    }
+    .composer button {
+        padding: 0 13px
+    }
+}

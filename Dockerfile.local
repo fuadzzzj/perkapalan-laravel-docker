@@ -1,0 +1,7 @@
+FROM laravelsail/php84-composer:latest
+
+USER root
+
+RUN docker-php-ext-install pdo_mysql
+
+WORKDIR /var/www/html

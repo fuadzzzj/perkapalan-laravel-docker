@@ -1,0 +1,40 @@
+services:
+  laravel.test:
+    image: perkapalan-php:8.4
+    working_dir: /var/www/html
+    command: php artisan serve --host=0.0.0.0 --port=8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - perkapalan
+
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: perkapalan
+      MYSQL_USER: perkapalan
+      MYSQL_PASSWORD: perkapalan_dev_password
+    ports:
+      - "127.0.0.1:3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p$$MYSQL_ROOT_PASSWORD"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - perkapalan
+
+networks:
+  perkapalan:
+    driver: bridge
+
+volumes:
+  mysql_data:
