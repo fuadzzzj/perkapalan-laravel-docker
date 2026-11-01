@@ -20,7 +20,14 @@ class MemberReportController extends Controller
         return view('member.reports.index', [
             'reports' => Laporan::query()->where('user_id', $user->id)->latest('tanggal_kirim')->get(),
             'scores' => $user->nilaiPraktikum()->latest()->get(),
-            'schedules' => JadwalPraktikum::query()->orderBy('tanggal')->orderBy('jam')->get(),
+            'schedules' => JadwalPraktikum::query()
+                ->where(function ($query) use ($user): void {
+                    $query->whereNull('kelas');
+                    if ($user->kelas) {
+                        $query->orWhere('kelas', $user->kelas);
+                    }
+                })
+                ->orderBy('tanggal')->orderBy('jam')->get(),
             'announcements' => Pengumuman::query()->latest()->limit(10)->get(),
         ]);
     }

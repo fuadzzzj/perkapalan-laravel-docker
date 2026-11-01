@@ -9,7 +9,7 @@ class JadwalPraktikum extends Model
 {
     protected $table = 'jadwal_praktikum';
 
-    protected $fillable = ['mata_pelajaran', 'tanggal', 'jam', 'ruang', 'foto_path', 'dibuat_oleh'];
+    protected $fillable = ['mata_pelajaran', 'tanggal', 'jam', 'ruang', 'kelas', 'foto_path', 'dibuat_oleh'];
 
     protected function casts(): array
     {

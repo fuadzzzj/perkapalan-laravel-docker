@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class AcademicController extends Controller
@@ -18,6 +19,7 @@ class AcademicController extends Controller
     public function index(): View
     {
         return view('guru.academic', [
+            'classes' => config('school.classes'),
             'members' => User::query()->where('role', 'anggota')->where('membership_status', 'approved')->orderBy('nama_lengkap')->get(),
             'reports' => Laporan::query()->with('user')->latest('tanggal_kirim')->get(),
             'schedules' => JadwalPraktikum::query()->latest('tanggal')->limit(20)->get(),
@@ -46,6 +48,7 @@ class AcademicController extends Controller
             'tanggal' => ['required', 'date'],
             'jam' => ['required', 'date_format:H:i'],
             'ruang' => ['required', 'string', 'max:255'],
+            'kelas' => ['required', 'string', Rule::in(config('school.classes'))],
             'foto_jadwal' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
         ]);
 

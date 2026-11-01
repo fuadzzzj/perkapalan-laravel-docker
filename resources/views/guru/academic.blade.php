@@ -36,9 +36,27 @@
             <input name="tanggal" type="date" required aria-label="Tanggal">
             <input name="jam" type="time" required aria-label="Jam">
             <input name="ruang" placeholder="Ruang" required>
+            <select name="kelas" required aria-label="Kelas">
+                <option value="">Pilih kelas tujuan</option>
+                @foreach ($classes as $class)
+                    <option value="{{ $class }}" @selected(old('kelas') === $class)>{{ $class }}</option>
+                @endforeach
+            </select>
             <input name="foto_jadwal" type="file" accept="image/jpeg,image/png,image/webp" aria-label="Foto jadwal">
             <button type="submit">Tambah Jadwal</button>
         </form>
+
+        <h2>Jadwal yang sudah dibuat</h2>
+        @forelse ($schedules as $schedule)
+            <article class="member-row">
+                <div>
+                    <strong>{{ $schedule->mata_pelajaran }} · {{ $schedule->kelas ?: 'Umum' }}</strong>
+                    <span>{{ $schedule->tanggal->format('d M Y') }} · {{ substr($schedule->jam, 0, 5) }} · {{ $schedule->ruang }}</span>
+                </div>
+            </article>
+        @empty
+            <p class="empty-note">Belum ada jadwal praktikum.</p>
+        @endforelse
 
         <h2>Pengumuman</h2>
         <form class="stack-form" method="POST" action="{{ route('guru.pengumuman.store') }}">

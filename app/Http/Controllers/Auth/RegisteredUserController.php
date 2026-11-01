@@ -8,12 +8,13 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class RegisteredUserController extends Controller
 {
     public function create(): View
     {
-        return view('auth.register');
+        return view('auth.register', ['classes' => config('school.classes')]);
     }
 
     public function store(Request $request): RedirectResponse
@@ -22,7 +23,7 @@ class RegisteredUserController extends Controller
             'username' => ['required', 'string', 'max:255', 'unique:users,username'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],
             'nama_lengkap' => ['required', 'string', 'max:255'],
-            'kelas' => ['required', 'string', 'max:255'],
+            'kelas' => ['required', 'string', Rule::in(config('school.classes'))],
             'nis' => ['required', 'string', 'max:255', 'unique:users,nis'],
             'jurusan' => ['required', 'string', 'max:255'],
             'tahun_masuk' => ['required', 'integer', 'min:2000', 'max:' . (now()->year + 1)],

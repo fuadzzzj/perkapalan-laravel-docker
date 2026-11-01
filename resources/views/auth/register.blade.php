@@ -30,7 +30,12 @@
             <input id="nis" name="nis" value="{{ old('nis') }}" required>
 
             <label for="kelas">Kelas</label>
-            <input id="kelas" name="kelas" value="{{ old('kelas') }}" required>
+            <select id="kelas" name="kelas" required>
+                <option value="">Pilih kelas</option>
+                @foreach ($classes as $class)
+                    <option value="{{ $class }}" @selected(old('kelas') === $class)>{{ $class }}</option>
+                @endforeach
+            </select>
 
             <label for="jurusan">Jurusan</label>
             <input id="jurusan" name="jurusan" value="{{ old('jurusan', 'Teknik Perkapalan') }}" required>

@@ -48,8 +48,8 @@
         <h2>Jadwal</h2>
         @forelse ($schedules as $schedule)
             <article class="member-row">
-                <strong>{{ $schedule->mata_pelajaran }}</strong>
-                <span>{{ $schedule->tanggal->format('d M Y') }} · {{ $schedule->jam }} · {{ $schedule->ruang }}</span>
+                <strong>{{ $schedule->mata_pelajaran }} · {{ $schedule->kelas ?: 'Umum' }}</strong>
+                <span>{{ $schedule->tanggal->format('d M Y') }} · {{ substr($schedule->jam, 0, 5) }} · {{ $schedule->ruang }}</span>
             </article>
         @empty
             <p class="empty-note">Belum ada jadwal.</p>

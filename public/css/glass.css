@@ -56,6 +56,16 @@ body {
     background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 48%, var(--sea-deep) 100%);
 }
 
+/* Lapisan tipis melembutkan latar tanpa menghilangkan bentuk kapal. */
+.fluid-bg::after {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    content: "";
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .015) 42%, rgba(9, 65, 106, .07));
+}
+
 /* gumpalan warna cair (langit, matahari, air) */
 .fluid-bg .blob { position: absolute; border-radius: 50%; will-change: transform; opacity: .75; }
 .fluid-bg .b1 { width: 70vmax; height: 70vmax; top: -34vmax; left: -22vmax;
@@ -93,7 +103,7 @@ body {
 @keyframes wave-move { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* kapal berlayar di cakrawala (di antara ombak belakang & tengah) */
-.ship { position: absolute; left: 0; will-change: transform; }
+.ship { position: absolute; left: 0; will-change: transform; filter: blur(.8px) saturate(.92); }
 .ship svg { display: block; width: 100%; height: auto; overflow: visible; }
 .ship-bob { transform-origin: 50% 90%; animation: ship-bob 5.5s ease-in-out infinite; }
 .ship-sail  { opacity: .88; bottom: 15vh; width: clamp(92px, 11vw, 170px); animation: sail-ltr 85s linear infinite; animation-delay: -22s; }

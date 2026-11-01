@@ -11,6 +11,13 @@
 
 Website organisasi Perkapalan ini dibangun dengan Laravel 13, Blade, dan MySQL 8.4.
 
+## kalo mau mulai ini dulu di terminal ubuntu
+
+```sh
+cd /home/fuadzzzj/Projects/belajar-laravel
+docker compose up -d mysql laravel.test
+```
+
 ### Modul
 
 - Halaman publik: beranda, profil, prestasi, Samudra Biru, teknik besi, tenaga ahli, dan workshop.

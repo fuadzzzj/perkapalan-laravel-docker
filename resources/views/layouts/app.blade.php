@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/service_navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/maritime.css') }}">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/page-showcase.css') }}">
     @yield('styles')
     <link rel="stylesheet" href="{{ asset('css/glass.css') }}">
 </head>
@@ -92,6 +93,9 @@
     </header>
 
     <main id="main-content">
+        @if (request()->routeIs('home', 'profil', 'public.*'))
+            @include('partials.page-showcase')
+        @endif
         @if (session('status')) <div class="container status-message">{{ session('status') }}</div> @endif
         @yield('content')
     </main>
@@ -102,6 +106,7 @@
                 <div class="foot-brand">
                     <a class="foot-logo" href="{{ route('home') }}"><i aria-hidden="true"></i>Al-Zaytun Shipyard</a>
                     <p>Workshop pembuatan kapal Ponpes Al-Zaytun - memadukan ilmu, keterampilan, dan akhlaq untuk kemaslahatan umat.</p>
+                    @include('partials.social-links')
                 </div>
                 <nav aria-label="Jelajah">
                     <h3>Jelajah</h3>
@@ -145,6 +150,7 @@
     </script>
     <script src="{{ asset('js/script.js') }}" defer></script>
     <script src="{{ asset('js/navbar.js') }}" defer></script>
+    <script src="{{ asset('js/page-showcase.js') }}" defer></script>
     @yield('scripts')
 </body>
 </html>
